@@ -23,7 +23,8 @@ def output_in():
             print(data_out)
             if data_out.startswith('{send_to'):
                 host_addr = re.findall('^{send_to:(.*)}$', data_out)[0]
-                host_addr = (host_addr.split(',')[0][2:-1], int(host_addr.split(',')[1][:-1]))
+                #host_addr = (host_addr.split(',')[0][2:-1], int(host_addr.split(',')[1][:-1]))
+                host_addr=eval(host_addr)
                 udp_cli_socket.sendto(b'hello', host_addr)
             elif data_out.startswith('{'):
                 peer_addrs = eval(data_out)
